@@ -6,17 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".FragmentVote">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/listView"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
 
-        </ListView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <!-- Media -->
+                <ImageView
+                    android:id="@+id/catimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_launcher_background"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="desc"
+                    />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/buttonfav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="favourite"
+                app:backgroundTint="#e3242e"
+                app:icon="@drawable/ic_fav" />
+
+            <Button
+                android:id="@+id/buttonnext"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="find next cat"
+                app:icon="@drawable/ic_next" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </FrameLayout>
