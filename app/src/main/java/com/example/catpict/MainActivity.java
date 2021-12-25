@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
+    private int[] tabIcons = {R.drawable.ic_home, R.drawable.ic_breed, R.drawable.ic_search, R.drawable.ic_fav};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
         Adapter.addFragment(new FragmentSearch(), "Search");
         Adapter.addFragment(new FragmentFavorites(), "Favorites");
         viewPager.setAdapter(Adapter);
+        setupTabIcons();
+    }
 
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+        tabLayout.getTabAt(3).setIcon(tabIcons[3]);
     }
 }
