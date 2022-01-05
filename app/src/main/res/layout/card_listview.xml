@@ -17,7 +17,7 @@
 
             <!-- Media -->
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/favimage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="desc"
@@ -39,8 +39,10 @@
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Like"
-                    app:icon="@drawable/ic_fav_border" />
+                    android:text="Unfavourite"
+                    android:textColor="#e3242e"
+                    app:iconTint="#e3242e"
+                    app:icon="@drawable/ic_unfav" />
             </LinearLayout>
 
         </LinearLayout>

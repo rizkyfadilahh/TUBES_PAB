@@ -5,13 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".FragmentFavorites">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="fragment favorites"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="40dp"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/listfav"
+        />
 
 </FrameLayout>

@@ -14,7 +14,10 @@
             android:id="@+id/card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="75dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,10 +29,9 @@
                     android:id="@+id/catimage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
                     android:contentDescription="desc"
-                    />
+                    android:scaleType="centerCrop" />
 
             </LinearLayout>
 
@@ -38,10 +40,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginLeft="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_alignParentBottom="true">
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp">
 
             <Button
                 android:id="@+id/buttonfav"
