@@ -1,5 +1,7 @@
 package com.example.catpict;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -24,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -34,7 +39,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class FragmentFavorites extends Fragment {
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class FragmentFavorites extends Fragment {
                 .addHeader("x-api-key", "3164f9ed-553c-4273-833b-4134a190c2aa")
                 .build();
 
+        List<String> img = new ArrayList<String>();
         client.newCall(randomCat).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -60,7 +65,6 @@ public class FragmentFavorites extends Fragment {
                     String json = null;
                     try {
                         json = response.body().string();
-                        System.out.println(json);
                     } catch (IOException e) {
 //                              debug logger
                         e.printStackTrace();
@@ -70,17 +74,21 @@ public class FragmentFavorites extends Fragment {
 //                              get url string
                         JSONArray arrayJSON_RESP = new JSONArray(json);
 
-                        int[] id = new int[arrayJSON_RESP.length()];
-                        String[] img = new String[arrayJSON_RESP.length()];
-
-                        for (int x=0; x<arrayJSON_RESP.length(); x++) {
+                        for (int x = 0; x < arrayJSON_RESP.length(); x++) {
                             JSONObject objectJSON_RESP = arrayJSON_RESP.getJSONObject(x);
-                            img[x] = objectJSON_RESP.getJSONObject("image").getString("url");
-                        }
+                            String a = objectJSON_RESP.getJSONObject("image").getString("url");
+                            img.add(a);
 
-                        FavListAdapter adapter=new FavListAdapter(getActivity(), img);
-                        ListView list = (ListView) view.findViewById(R.id.listfav);
-                        list.setAdapter(adapter);
+                            Handler uiHandler = new Handler(Looper.getMainLooper());
+                            uiHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    FavListAdapter adapter = new FavListAdapter(getActivity(), img);
+                                    ListView list = (ListView) view.findViewById(R.id.listfav);
+                                    list.setAdapter(adapter);
+                                }
+                            });
+                        }
 
                     } catch (JSONException e) {
 //                              debug logger
@@ -95,4 +103,34 @@ public class FragmentFavorites extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
+
+    public class FavListAdapter extends ArrayAdapter<String> {
+
+        private final Activity context;
+        private final List<String> img;
+
+        public FavListAdapter(Activity context, List<String> img) {
+            super(context, R.layout.card_listview, img);
+            // TODO Auto-generated constructor stub
+
+            this.context = context;
+            this.img = img;
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(R.layout.card_listview, parent, false);
+
+            ImageView imageView = (ImageView) rowView.findViewById(R.id.favimage);
+
+            Picasso.get().load(img.get(position)).into(imageView);
+
+            return rowView;
+        }
+
+        ;
+    }
 }
+
