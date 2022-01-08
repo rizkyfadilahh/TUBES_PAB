@@ -2,6 +2,7 @@ package com.example.catpict;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -53,6 +55,8 @@ public class FragmentFavorites extends Fragment {
                 .build();
 
         List<String> img = new ArrayList<String>();
+        List<Integer> id = new ArrayList<Integer>();
+
         client.newCall(randomCat).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -76,19 +80,21 @@ public class FragmentFavorites extends Fragment {
 
                         for (int x = 0; x < arrayJSON_RESP.length(); x++) {
                             JSONObject objectJSON_RESP = arrayJSON_RESP.getJSONObject(x);
+                            int gid = objectJSON_RESP.getInt("id");
                             String a = objectJSON_RESP.getJSONObject("image").getString("url");
+                            id.add(gid);
                             img.add(a);
-
-                            Handler uiHandler = new Handler(Looper.getMainLooper());
-                            uiHandler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    FavListAdapter adapter = new FavListAdapter(getActivity(), img);
-                                    ListView list = (ListView) view.findViewById(R.id.listfav);
-                                    list.setAdapter(adapter);
-                                }
-                            });
                         }
+
+                        Handler uiHandler = new Handler(Looper.getMainLooper());
+                        uiHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                FavListAdapter adapter = new FavListAdapter(getActivity(), id, img);
+                                ListView list = (ListView) view.findViewById(R.id.listfav);
+                                list.setAdapter(adapter);
+                            }
+                        });
 
                     } catch (JSONException e) {
 //                              debug logger
@@ -107,13 +113,15 @@ public class FragmentFavorites extends Fragment {
     public class FavListAdapter extends ArrayAdapter<String> {
 
         private final Activity context;
+        private final List<Integer> id;
         private final List<String> img;
 
-        public FavListAdapter(Activity context, List<String> img) {
+        public FavListAdapter(Activity context, List<Integer> id, List<String> img) {
             super(context, R.layout.card_listview, img);
             // TODO Auto-generated constructor stub
 
             this.context = context;
+            this.id = id;
             this.img = img;
         }
 
@@ -124,13 +132,28 @@ public class FragmentFavorites extends Fragment {
             View rowView = inflater.inflate(R.layout.card_listview, parent, false);
 
             ImageView imageView = (ImageView) rowView.findViewById(R.id.favimage);
+            Button deleteImageView = (Button) rowView.findViewById(R.id.unfavbtn);
 
             Picasso.get().load(img.get(position)).into(imageView);
+
+            deleteImageView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    OkHttpClient client = new OkHttpClient();
+
+                    String BASE_URL = "https://api.thecatapi.com/v1/";
+                    Request unfav = new Request.Builder()
+                            .url(BASE_URL + "favourites/" + id.get(position))
+                            .addHeader("x-api-key", "3164f9ed-553c-4273-833b-4134a190c2aa")
+                            .build();
+
+                    Snackbar.make(parent, BASE_URL + "favourites/" + id.get(position), Snackbar.LENGTH_SHORT)
+                            .show();
+                }
+            });
 
             return rowView;
         }
 
-        ;
     }
 }
 
