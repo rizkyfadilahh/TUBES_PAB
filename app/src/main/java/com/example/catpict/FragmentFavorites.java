@@ -132,24 +132,8 @@ public class FragmentFavorites extends Fragment {
             View rowView = inflater.inflate(R.layout.card_listview, parent, false);
 
             ImageView imageView = (ImageView) rowView.findViewById(R.id.favimage);
-            Button deleteImageView = (Button) rowView.findViewById(R.id.unfavbtn);
 
             Picasso.get().load(img.get(position)).into(imageView);
-
-            deleteImageView.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    OkHttpClient client = new OkHttpClient();
-
-                    String BASE_URL = "https://api.thecatapi.com/v1/";
-                    Request unfav = new Request.Builder()
-                            .url(BASE_URL + "favourites/" + id.get(position))
-                            .addHeader("x-api-key", "3164f9ed-553c-4273-833b-4134a190c2aa")
-                            .build();
-
-                    Snackbar.make(parent, BASE_URL + "favourites/" + id.get(position), Snackbar.LENGTH_SHORT)
-                            .show();
-                }
-            });
 
             return rowView;
         }

@@ -33,6 +33,11 @@
         <item>American Bobtail</item>
         <item>American Curl</item>
         <item>American Shorthail</item>
+        <item>American Wirehair</item>
+        <item>Arabian Mau</item>
+        <item>Australian Mist</item>
+        <item>Balinese</item>
+        <item>Bambino</item>
     </string-array>
 
     <string-array name="gridspinner">

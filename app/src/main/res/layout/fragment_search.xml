@@ -37,8 +37,8 @@
                     android:id="@+id/orderspinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/orderspinner"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:entries="@array/orderspinner" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,8 +60,8 @@
                     android:id="@+id/typespinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/typespinner"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:entries="@array/typespinner" />
             </LinearLayout>
         </LinearLayout>
 
@@ -91,8 +91,8 @@
                     android:id="@+id/categoryspinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/categoryspinner"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:entries="@array/categoryspinner" />
             </LinearLayout>
 
             <LinearLayout
@@ -114,43 +114,16 @@
                     android:id="@+id/breedspinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/breedspinner"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:entries="@array/breedspinner" />
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView"
+        <ListView
+            android:id="@+id/searchlist"
             android:layout_width="match_parent"
-            android:layout_height="386dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_launcher_background" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/gridspinner"
-                android:layout_width="5dp"
-                android:layout_height="45dp"
-                android:layout_marginHorizontal="5dp"
-                android:entries="@array/gridspinner"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/refreshbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:text="more" />
-        </LinearLayout>
+            android:layout_height="451dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
