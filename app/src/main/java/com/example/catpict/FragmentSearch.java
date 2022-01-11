@@ -7,10 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 public class FragmentSearch extends Fragment {
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

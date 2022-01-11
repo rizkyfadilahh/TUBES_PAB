@@ -2,4 +2,43 @@
     <string name="app_name">cat pict</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="orderspinner">
+        <item>Random</item>
+        <item>Desc</item>
+        <item>Asc</item>
+    </string-array>
+
+    <string-array name="typespinner">
+        <item>All</item>
+        <item>Static</item>
+        <item>Animated</item>
+    </string-array>
+
+    <string-array name="categoryspinner">
+        <item>None</item>
+        <item>boxes</item>
+        <item>clothes</item>
+        <item>hats</item>
+        <item>sinks</item>
+        <item>space</item>
+        <item>sunglasses</item>
+        <item>ties</item>
+    </string-array>
+
+    <string-array name="breedspinner">
+        <item>None</item>
+        <item>Abyssian</item>
+        <item>Aegan</item>
+        <item>American Bobtail</item>
+        <item>American Curl</item>
+        <item>American Shorthail</item>
+    </string-array>
+
+    <string-array name="gridspinner">
+        <item>9</item>
+        <item>18</item>
+        <item>80</item>
+    </string-array>
 </resources>
+
